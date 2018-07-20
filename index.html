@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+
+app.controller('myCtrl', function($scope) {
+    $scope.miku = [
+        {
+            id : 222,
+            name : "โรงแรมพัทยา",
+            Amount : [4800,33600]
+        },
+        {
+            id : 281,
+            name : "Happy Ville",
+            Amount : [210000,34491]
+        }
+    ];
+    $scope.Ary = [
+        {
+           id : 224,
+           name : "โรงแรมพัทยา",
+           Amount : 4800
+        },
+        {
+            id : 224,
+           name : "โรงแรมพัทยา",
+           Amount : 33600
+        },
+        {
+            id : 281,
+           name : "Happy Ville",
+           Amount : 210000
+        },
+        {
+            id : 281,
+           name : "Happy Ville",
+           Amount : 34491
+        }
+    ];
+
+    var b = _.groupBy($scope.Ary,'id')
+    console.log(b)
+
+   var a = _.chain($scope.Ary)
+   .groupBy('id')
+   .map(function(value,key){
+       return {
+           id:key,
+           name:value[0].name,
+           Amount:_.pluck(value,'Amount')
+       }
+   })
+   .value();
+   console.log(a)
+
+
+   $scope.finally = [
+        {
+           name: 'moe',
+            age: 40
+        },
+        {
+            name: 'larry',
+            age: 50
+        },
+        {
+            name: 'curly',
+             age: 60
+        }
+       ];
+
+
+
+var fff = _.pluck($scope.finally, 'name');
+
+
+console.log(fff);
+});
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
